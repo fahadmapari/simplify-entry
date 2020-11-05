@@ -10,7 +10,6 @@ function showModal(msg){
 
 Html5Qrcode.getCameras().then(devices => {
     if (devices && devices.length) {
-      var cameraId = devices[3].id;
       // .. use this to start scanning.
       const html5QrCode = new Html5Qrcode(/* element id */ "reader");
   html5QrCode.start(
