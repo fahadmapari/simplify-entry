@@ -30,7 +30,7 @@ Html5Qrcode.getCameras().then(devices => {
       // .. use this to start scanning.
       const html5QrCode = new Html5Qrcode(/* element id */ "reader");
   html5QrCode.start(
-    cameraId, 
+    { facingMode: "environment" }, 
     {
       fps: 10,    // Optional frame per seconds for qr code scanning
       qrbox: 200  // Optional if you want bounded box UI

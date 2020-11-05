@@ -21,19 +21,19 @@ router.get('/login', check.isGuest ,(req, res)=>{
 });
 
 
-router.get('/dash', check.isUser ,(req, res)=>{
+router.get('/dash', check.isLoggedIn, check.isUser ,(req, res)=>{
     res.render('dash');
 });
 
-router.get('/admin-dash', check.isAdmin ,(req, res)=>{
+router.get('/admin-dash', check.isLoggedIn, check.isAdmin ,(req, res)=>{
     res.render('admin-dash');
 });
 
-router.get('/qr/create', check.isAdmin ,(req, res)=>{
+router.get('/qr/create', check.isLoggedIn, check.isAdmin ,(req, res)=>{
     res.render('new-qr');
 });
 
-router.post('/qr/create', check.isAdmin ,(req, res)=>{
+router.post('/qr/create', check.isLoggedIn, check.isAdmin ,(req, res)=>{
 
     Society.create({
         societyName: req.body.name,
@@ -63,14 +63,12 @@ router.post('/qr/create', check.isAdmin ,(req, res)=>{
     });
 });
 
-router.get('/qr-list', check.isAdmin ,async (req, res)=>{
+router.get('/qr-list', check.isLoggedIn, check.isAdmin ,async (req, res)=>{
     let societies = await Society.find({createdBy: req.user._id});
     res.render('qr-list', {
         societies
     });
 });
 
-
-//https://repl.it/repls/FocusedOnerlookedAutocad
 
 module.exports = router;

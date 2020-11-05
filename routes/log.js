@@ -3,15 +3,15 @@ const Log = require('../models/log');
 const Society = require('../models/society');
 const check = require('../middleware/auth');
 
-router.get('/entry', check.isUser ,(req, res)=>{
+router.get('/entry', check.isLoggedIn ,check.isUser ,(req, res)=>{
     res.render('log-entry');
 });
 
-router.get('/exit', check.isUser ,(req, res)=>{
+router.get('/exit', check.isLoggedIn, check.isUser ,(req, res)=>{
     res.render('log-exit');
 });
 
-router.post('/entry/add', check.isUser ,async (req, res)=>{
+router.post('/entry/add', check.isLoggedIn, check.isUser ,async (req, res)=>{
     let foundSociety = await Society.findOne({_id: req.body.qrValue});
     Log.create({
         loggedBy: req.user._id,
@@ -27,7 +27,7 @@ router.post('/entry/add', check.isUser ,async (req, res)=>{
     }); 
 });
 
-router.post('/exit/add', check.isUser ,async (req, res)=>{
+router.post('/exit/add', check.isLoggedIn, check.isUser ,async (req, res)=>{
     let foundSociety = await Society.findOne({_id: req.body.qrValue});
     Log.create({
         loggedBy: req.user._id,
@@ -43,7 +43,7 @@ router.post('/exit/add', check.isUser ,async (req, res)=>{
     }); 
 });
 
-router.get('/records/entries', check.isUser ,async (req, res)=>{
+router.get('/records/entries', check.isLoggedIn, check.isUser ,async (req, res)=>{
     let logs;
     if(req.query.startdate && req.query.enddate){
         let d = req.query.enddate.split('-');
@@ -80,7 +80,7 @@ router.get('/records/entries', check.isUser ,async (req, res)=>{
     });
 });
 
-router.get('/records/exits', check.isUser ,async (req, res)=>{
+router.get('/records/exits', check.isLoggedIn, check.isUser ,async (req, res)=>{
     let logs;
     if(req.query.startdate && req.query.enddate){
         let d = req.query.enddate.split('-');
@@ -119,7 +119,7 @@ router.get('/records/exits', check.isUser ,async (req, res)=>{
 
 
 
-router.get('/records/admin/entries', check.isAdmin ,async (req, res)=>{
+router.get('/records/admin/entries', check.isLoggedIn, check.isAdmin ,async (req, res)=>{
     let logs = await Log.find({ societyOwner: req.user._id, type: 'entry' }).populate('loggedBy').exec();
 
     function formatDate(date){
@@ -134,7 +134,7 @@ router.get('/records/admin/entries', check.isAdmin ,async (req, res)=>{
     });
 });
 
-router.get('/records/admin/exits', check.isAdmin ,async (req, res)=>{
+router.get('/records/admin/exits', check.isLoggedIn, check.isAdmin ,async (req, res)=>{
     let logs = await Log.find({ societyOwner: req.user._id, type: 'exit' }).populate('loggedBy').exec();
 
     function formatDate(date){

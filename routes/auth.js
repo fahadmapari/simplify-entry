@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const User = require('../models/user');
 const passport = require('passport');
+const check = require('../middleware/auth');
 
-router.post('/register', (req, res)=>{
+router.post('/register', check.isGuest ,(req, res)=>{
     const {username, name, society, password} = req.body;
     const newUser = new User({
         username: Number(username),
@@ -19,7 +20,7 @@ router.post('/register', (req, res)=>{
 });
 
 
-router.post('/login' ,passport.authenticate('local', {
+router.post('/login', check.isGuest ,passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true 
   }) ,(req, res)=>{
@@ -30,7 +31,7 @@ router.post('/login' ,passport.authenticate('local', {
     }
 });
 
-router.get('/logout', (req, res)=>{
+router.get('/logout', check.isLoggedIn , (req, res)=>{
     req.logout();
     req.logOut();
     req.session.destroy();
