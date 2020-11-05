@@ -58,11 +58,11 @@ router.get('/records/entries', check.isLoggedIn, check.isUser ,async (req, res)=
         }
         req.query.enddate = stringEndDate;
         console.log(req.query.enddate);
-        logs = await Log.find({ loggedAt: { $gte: new Date(req.query.startdate), $lte: new Date(req.query.enddate)} ,loggedBy: req.user._id, type: 'entry' });
+        logs = await Log.find({ loggedAt: { $gte: new Date(req.query.startdate), $lte: new Date(req.query.enddate)} ,loggedBy: req.user._id, type: 'entry' }).sort({ loggedAt: 1}).exec();
 
         
     }else{
-        logs = await Log.find({ loggedBy: req.user._id, type: 'entry' });
+        logs = await Log.find({ loggedBy: req.user._id, type: 'entry' }).sort({ loggedAt: -1}).exec();
     }
 
 
@@ -95,11 +95,11 @@ router.get('/records/exits', check.isLoggedIn, check.isUser ,async (req, res)=>{
         }
         req.query.enddate = stringEndDate;
         console.log(req.query.enddate);
-        logs = await Log.find({ loggedAt: { $gte: new Date(req.query.startdate), $lte: new Date(req.query.enddate)} ,loggedBy: req.user._id, type: 'exit' });
+        logs = await Log.find({ loggedAt: { $gte: new Date(req.query.startdate), $lte: new Date(req.query.enddate)} ,loggedBy: req.user._id, type: 'exit' }).sort({ loggedAt: 1}).exec();
 
         
     }else{
-        logs = await Log.find({ loggedBy: req.user._id, type: 'exit' });
+        logs = await Log.find({ loggedBy: req.user._id, type: 'exit' }).sort({ loggedAt: -1}).exec();
     }
 
 
@@ -120,7 +120,7 @@ router.get('/records/exits', check.isLoggedIn, check.isUser ,async (req, res)=>{
 
 
 router.get('/records/admin/entries', check.isLoggedIn, check.isAdmin ,async (req, res)=>{
-    let logs = await Log.find({ societyOwner: req.user._id, type: 'entry' }).populate('loggedBy').exec();
+    let logs = await Log.find({ societyOwner: req.user._id, type: 'entry' }).populate('loggedBy').sort({ loggedAt: -1}).exec();
 
     function formatDate(date){
         let d = new Date(date);
@@ -135,7 +135,7 @@ router.get('/records/admin/entries', check.isLoggedIn, check.isAdmin ,async (req
 });
 
 router.get('/records/admin/exits', check.isLoggedIn, check.isAdmin ,async (req, res)=>{
-    let logs = await Log.find({ societyOwner: req.user._id, type: 'exit' }).populate('loggedBy').exec();
+    let logs = await Log.find({ societyOwner: req.user._id, type: 'exit' }).populate('loggedBy').sort({ loggedAt: -1}).exec();
 
     function formatDate(date){
         let d = new Date(date);
