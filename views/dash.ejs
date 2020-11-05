@@ -1,0 +1,37 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header app-header-extended">
+            <h2 class="app-header__title">Hello <br /> <%= user.name %></h2>
+        </header>
+    <div class="dash-buttons">
+        <div class="dash-button">
+            <a href="/log/entry">
+                <span><i class="fas fa-door-closed"></i></span>
+                Log Entry
+            </a>
+        </div>
+        
+        <div class="dash-button">
+            <a href="/log/exit">
+                <span><i class="fas fa-door-open"></i></span>
+                Log Exit
+            </a>
+        </div>
+
+        <div class="dash-button">
+            <a href="/log/records/entries">
+                <span><i class="fas fa-clipboard-list"></i></i></span>
+                View Log
+            </a>
+        </div>
+
+        <div class="dash-button">
+            <a href="/auth/logout">
+                <span><i class="fas fa-sign-out-alt"></i></span>
+                Logout
+            </a>
+        </div>
+    </div>
+    <p class="footer-info">Designed And Developed By SimplifyTech.in</p>
+    </section>
+<%- include("partials/footer") %>

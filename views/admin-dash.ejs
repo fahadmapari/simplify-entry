@@ -1,0 +1,37 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header app-header-extended">
+            <h2 class="app-header__title">Admin <br /> Panel</h2>
+        </header>
+    <div class="dash-buttons">
+        <div class="dash-button">
+            <a href="/qr/create">
+                <span><i class="fas fa-qrcode"></i></span>
+                Create New
+            </a>
+        </div>
+        
+        <div class="dash-button">
+            <a href="/qr-list">
+                <span><i class="fas fa-eye"></i></i></span>
+                View QR
+            </a>
+        </div>
+
+        <div class="dash-button">
+            <a href="/log/records/admin/entries">
+                <span><i class="fas fa-clipboard-list"></i></i></span>
+                View Log
+            </a>
+        </div>
+
+        <div class="dash-button">
+            <a href="/auth/logout">
+                <span><i class="fas fa-sign-out-alt"></i></span>
+                Logout
+            </a>
+        </div>
+    </div>
+    <p class="footer-info">Designed And Developed By SimplifyTech.in</p>
+    </section>
+<%- include("partials/footer") %>

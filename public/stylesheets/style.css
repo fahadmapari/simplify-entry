@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary-color: #3b60e4;
+  --dash-btn-color: #7765e3;
+  --text: calc(1rem + 1vw);
+  --head: calc(1rem + 3vw);
+}
+
+.main-app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.app-header {
+  min-height: 10vh;
+  font-size: var(--head);
+  color: white;
+  line-height: 1;
+  font-weight: 400;
+  background-color: var(--primary-color);
+  padding: 0.8rem 1rem;
+}
+
+.app-header__title {
+  margin: 0.8rem auto;
+}
+
+.app-header-extended {
+  min-height: 30vh;
+}

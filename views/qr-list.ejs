@@ -1,0 +1,24 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header">
+            <h2 class="app-header__title">Your <br /> QR Codes</h2>
+        </header>
+        <div class="qr-list">
+
+            <% societies.forEach((society)=>{ %>
+                <div class="qr-container">
+                <div class="qr-code">
+                    <%- society.qrSVG %>
+                </div>
+                <div class="qr-details">
+                    <p><%= society.societyName %></p>
+                    <button class="print-btn">Print</button>
+                </div>
+                </div>
+            <% }) %>
+
+        </div>
+    </section>
+    <script src="/js/dom-to-image.min.js"></script>
+    <script src="/js/qr-list.js"></script>
+<%- include("partials/footer") %>

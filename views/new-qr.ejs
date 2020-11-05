@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header">
+            <h2 class="app-header__title">Add New</h2>
+        </header>
+        <div class="form-container">
+            <form action="/qr/create" method="POST">
+                <input class="form-input" type="text" name="name" placeholder="Society Name" required />
+                <input type="submit" class="auth-button" value="Generate">
+            </form>
+        </div>
+    </section>
+<%- include("partials/footer") %>

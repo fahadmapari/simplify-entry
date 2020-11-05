@@ -1,0 +1,24 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header">
+            <h2 class="app-header__title">Register</h2>
+        </header>
+        <div class="form-container">
+            <form id="form" action="/auth/register" method="POST">
+                <input id="mobile" class="form-input" type="tel" name="username" pattern="[0-9]{10}" placeholder="Mobile Number" required />
+                <input id="name" class="form-input" type="text" name="name" placeholder="Name" required />
+                <select class="form-input" name="society" id="">
+                    <% societies.forEach(society => { %>
+                        <option value="<%= society._id %>"><%= society.societyName %></option>
+                    <% }) %>
+                </select>
+                <input id="password" class="form-input" type="password" name="password"
+                placeholder="Password" required />
+                <input id="confirm-password" class="form-input" type="password" name="confirm-password" placeholder="Confirm Password" required />
+                <input type="submit" class="auth-button" value="Submit">
+            </form>
+        </div>
+
+    </section>
+    <script src="/js/validate.js"></script>
+<%- include("partials/footer") %>

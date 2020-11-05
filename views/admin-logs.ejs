@@ -1,0 +1,27 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header">
+            <h2>Logs</h2>
+            <div class="log-links">
+                <a class="<%= activelink === 0 ? 'current-link' : '' %>" href="/log/records/admin/entries">Entries</a>
+                <a class="<%= activelink === 1 ? 'current-link' : '' %>" href="/log/records/admin/exits">Exits</a>
+            </div>
+        </header>
+
+        <div class="entry-list">
+
+            <% logs.forEach((log)=>{ %>
+                <div class="entry-card">
+                    <div class="entry-card__user">
+                        <h3><%= log.loggedBy.name %></h3>
+                        <p><%= log.loggedBy.username %></p>
+                        <p><%= log.society %></p>
+                    </div>
+                    <div class="entry-card__date"><%= formatDate(log.loggedAt) %></div>
+                </div>
+            <% }) %>
+
+        </div>
+
+    </section>
+<%- include("partials/footer") %>

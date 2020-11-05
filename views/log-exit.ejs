@@ -1,0 +1,63 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header">
+            <h2 class="app-header__title"><span><i class="fas fa-door-open"></i></span> Log Exit</h2>
+        </header>
+        <div class="video-container" id="reader"> 
+            <div class="scan-line"><span></span></div>
+        </div>
+        <div class="greet-screen">
+            <h2>Thank you for visiting <br /> <span id="societyName">Society Name</span> </h2>
+            <a href="/dash">Okay</a>
+        </div>
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/html5-qrcode.min.js"></script>
+   <script>
+       let prevCode = '';
+
+function showModal(msg){
+  const greetScreen = document.querySelector('.greet-screen');
+  const societyName = document.getElementById('societyName');
+  societyName.textContent = msg;
+  greetScreen.classList.toggle('greet-screen-show');
+}
+
+
+Html5Qrcode.getCameras().then(devices => {
+    if (devices && devices.length) {
+      var cameraId = devices[3].id;
+      // .. use this to start scanning.
+      const html5QrCode = new Html5Qrcode(/* element id */ "reader");
+  html5QrCode.start(
+    cameraId, 
+    {
+      fps: 10,    // Optional frame per seconds for qr code scanning
+      qrbox: 200  // Optional if you want bounded box UI
+    },
+    async (qrCodeMessage) => {
+      if(prevCode !== qrCodeMessage){
+        prevCode = qrCodeMessage;
+        let res = await axios.post('/log/exit/add', {qrValue: qrCodeMessage});
+        if(res.data.status){
+          showModal(res.data.name);
+          html5QrCode.stop();
+        }
+      }
+    },
+    errorMessage => {
+      // parse error, ignore it.
+    })
+  .catch(err => {
+    // Start failed, handle it.
+    alert(err);
+  });
+    }
+  }).catch(err => {
+    // handle err
+    alert(err);
+});
+
+
+   </script>
+<%- include("partials/footer") %>

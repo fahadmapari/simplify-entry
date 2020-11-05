@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header">
+            <h2 class="app-header__title"><span><i class="fas fa-door-closed"></i></span> Log Entry</h2>
+        </header>
+        <div class="video-container" id="reader"> 
+            <div class="scan-line"><span></span></div>
+        </div>
+        <div class="greet-screen">
+            <h2>Warm welcome <br /> to <span id="societyName">Society Name</span> </h2>
+            <a href="/dash">Okay</a>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/html5-qrcode.min.js"></script>
+   <script src="/js/scan.js"></script>
+<%- include("partials/footer") %>

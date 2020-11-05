@@ -1,0 +1,50 @@
+<%- include("partials/header") %>
+    <section class="main-app">
+        <header class="app-header">
+            <h2>Logs</h2>
+            <div class="dates-container">
+                <form action="/log/records/<%= type %>" method="GET" id="dates-form" action="">
+                    <input placeholder="Start Date" name="startdate" class="date-picker" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="startDate" />
+                    <input placeholder="End Date" name="enddate" class="date-picker" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="endDate" />
+                </form>
+            </div>
+            <div class="log-links">
+                <a class="<%= activelink === 0 ? 'current-link' : '' %>" href="/log/records/entries">Entries</a>
+                <a class="<%= activelink === 1 ? 'current-link' : '' %>" href="/log/records/exits">Exits</a>
+            </div>
+        </header>
+
+        <div class="entry-list">
+
+            <% logs.forEach((log)=>{ %>
+                <div class="entry-card">
+                    <div class="entry-card__user">
+                        <h3><%= username %></h3>
+                        <p><%= log.society %></p>
+                    </div>
+                    <div class="entry-card__date"><%= formatDate(log.loggedAt) %></div>
+                </div>
+            <% }) %>
+
+        </div>
+
+    </section>
+    <script>
+        const form = document.getElementById('dates-form');
+        const startDate = document.getElementById('startDate');
+        const endDate = document.getElementById('endDate');
+        form.addEventListener('change', (e)=>{
+            if(startDate.value === ''){
+                return;
+            }
+            if(endDate.value === ''){
+                return;
+            }
+            if(new Date(startDate.value).valueOf() > new Date(endDate.value).valueOf()){
+                alert('start date can not be greater than end date');
+                return;
+            }
+            form.submit();
+        });
+    </script>
+<%- include("partials/footer") %>
