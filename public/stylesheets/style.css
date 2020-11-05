@@ -37,3 +37,7 @@ body {
 .app-header-extended {
   min-height: 30vh;
 }
+
+a {
+  text-decoration: none;
+}
