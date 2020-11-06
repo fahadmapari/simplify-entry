@@ -27,5 +27,5 @@ form.addEventListener('submit', (e)=>{
         alert(msg);
         return;
     }
-    e.submit();
+    form.submit();
 });
