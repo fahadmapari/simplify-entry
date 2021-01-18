@@ -68,7 +68,7 @@ router.get('/records/entries', check.isLoggedIn, check.isUser ,async (req, res)=
 
     function formatDate(date){
         let d = new Date(date);
-        return `${d.getDay() + 1}/${d.getMonth() + 1}/${d.getFullYear()}`;
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     }
 
     res.render('logs', {
@@ -105,7 +105,7 @@ router.get('/records/exits', check.isLoggedIn, check.isUser ,async (req, res)=>{
 
     function formatDate(date){
         let d = new Date(date);
-        return `${d.getDay() + 1}/${d.getMonth() + 1}/${d.getFullYear()}`;
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     }
 
     res.render('logs', {
@@ -124,7 +124,7 @@ router.get('/records/admin/entries', check.isLoggedIn, check.isAdmin ,async (req
 
     function formatDate(date){
         let d = new Date(date);
-        return `${d.getDay() + 1}/${d.getMonth() + 1}/${d.getFullYear()}`;
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     }
 
     res.render('admin-logs', {
@@ -139,7 +139,7 @@ router.get('/records/admin/exits', check.isLoggedIn, check.isAdmin ,async (req, 
 
     function formatDate(date){
         let d = new Date(date);
-        return `${d.getDay() + 1}/${d.getMonth() + 1}/${d.getFullYear()}`;
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     }
 
     res.render('admin-logs', {
