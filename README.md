@@ -11,7 +11,7 @@ for admin creds ask me
 
 ## Scan this qr code as for demo entry and exit
 
-![alt text]()
+![alt text](https://i.imgur.com/7wI9D8Y.jpg)
 
 ## Screenshots
 
