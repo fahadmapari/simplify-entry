@@ -9,7 +9,7 @@ password: 123456
 
 for admin creds ask me
 
-## Scan this qr code as for demo entry and exit
+## Scan this qr code for demo entry and exit
 
 ![alt text](https://i.imgur.com/7wI9D8Y.jpg)
 
