@@ -1,6 +1,6 @@
 # simplify-entry
 
-live app: https://simplify-entry.herokuapp.com/ (use mobile)
+live app: https://simplifyentry.onrender.com (use mobile)
 
 ## Demo credentials
 
